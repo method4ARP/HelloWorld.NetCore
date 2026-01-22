@@ -1,0 +1,17 @@
+@model HelloWorld.NetCore.Models.WelcomeViewModel
+@{
+    ViewData["Title"] = "Welcome";
+}
+
+<div style="max-width: 800px; margin: 50px auto; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; border-radius: 10px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);">
+    <h1 style="font-size: 3em; margin-bottom: 20px;">Welcome!</h1>
+    <p style="font-size: 1.2em;">This page is powered by .NET Core 8 MVC</p>
+    <div style="font-size: 1.5em; margin-top: 30px;">
+        <div style="font-weight: bold; margin: 10px 0;">
+            📅 @Model.CurrentDate.ToString("dddd, MMMM dd, yyyy")
+        </div>
+        <div style="font-weight: bold; margin: 10px 0;">
+            🕐 @Model.CurrentDate.ToString("HH:mm:ss")
+        </div>
+    </div>
+</div>
