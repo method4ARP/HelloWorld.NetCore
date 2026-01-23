@@ -1,0 +1,802 @@
+[
+  {
+    "id": 1,
+    "topic": "Azure App Service",
+    "question": "You are developing a web application that will be deployed to Azure App Service. The application needs to scale automatically based on HTTP queue length. Which Azure App Service plan should you use?",
+    "options": ["Free", "Shared", "Basic", "Standard or Premium"],
+    "correctAnswerIndex": 3,
+    "explanation": "Standard and Premium App Service plans support autoscaling based on metrics like HTTP queue length, CPU percentage, and memory percentage. Free, Shared, and Basic plans do not support autoscaling."
+  },
+  {
+    "id": 2,
+    "topic": "Azure Functions",
+    "question": "Which Azure Functions hosting plan provides the ability to avoid cold starts by keeping instances perpetually warm?",
+    "options": ["Consumption plan", "Premium plan", "Dedicated (App Service) plan", "Both Premium and Dedicated plans"],
+    "correctAnswerIndex": 3,
+    "explanation": "Both Premium and Dedicated (App Service) plans can avoid cold starts. Premium plan has a 'always ready' instances feature, and Dedicated plan keeps instances always running."
+  },
+  {
+    "id": 3,
+    "topic": "Azure App Service",
+    "question": "You need to deploy a web app to Azure App Service and ensure zero downtime during deployment. Which deployment feature should you use?",
+    "options": ["Continuous deployment", "Deployment slots", "FTP deployment", "ZIP deploy"],
+    "correctAnswerIndex": 1,
+    "explanation": "Deployment slots allow you to deploy your app to a staging environment, then swap it with production with zero downtime. This provides instant rollback capability and warm-up time for the new version."
+  },
+  {
+    "id": 4,
+    "topic": "Azure Functions",
+    "question": "What is the default timeout duration for Azure Functions running on the Consumption plan?",
+    "options": ["30 seconds", "5 minutes", "10 minutes", "30 minutes"],
+    "correctAnswerIndex": 1,
+    "explanation": "The default timeout is 5 minutes (300 seconds) for Consumption plan, configurable up to 10 minutes. Premium and Dedicated plans support unlimited duration (default 30 minutes, configurable to unlimited)."
+  },
+  {
+    "id": 5,
+    "topic": "Azure Container Instances",
+    "question": "You need to run a containerized application that requires persistent storage. Which feature should you use with Azure Container Instances?",
+    "options": ["Azure Blob Storage mounting", "Azure File share mounting", "Azure Disk attachment", "Local container storage"],
+    "correctAnswerIndex": 1,
+    "explanation": "Azure Container Instances supports mounting Azure File shares to provide persistent storage. This allows data to persist beyond the container lifetime."
+  },
+  {
+    "id": 6,
+    "topic": "Azure Kubernetes Service",
+    "question": "Which command-line tool is used to manage Azure Kubernetes Service (AKS) clusters?",
+    "options": ["az aks", "kubectl", "Both az aks and kubectl", "docker"],
+    "correctAnswerIndex": 2,
+    "explanation": "Both tools are used: 'az aks' manages the AKS cluster itself (create, scale, upgrade), while 'kubectl' manages Kubernetes resources within the cluster (pods, services, deployments)."
+  },
+  {
+    "id": 7,
+    "topic": "Azure App Service",
+    "question": "You need to configure custom domain names with SSL for an Azure App Service web app. What is the minimum App Service plan tier required?",
+    "options": ["Free", "Shared", "Basic", "Standard"],
+    "correctAnswerIndex": 2,
+    "explanation": "Basic tier and above support custom domains and SSL certificates. Free and Shared tiers only support *.azurewebsites.net domains."
+  },
+  {
+    "id": 8,
+    "topic": "Azure Functions",
+    "question": "Which binding direction allows an Azure Function to write data to an external service?",
+    "options": ["in", "out", "inout", "trigger"],
+    "correctAnswerIndex": 1,
+    "explanation": "Output bindings use the 'out' direction to write data to external services. Input bindings use 'in', triggers use 'trigger', and 'inout' allows bidirectional binding."
+  },
+  {
+    "id": 9,
+    "topic": "Docker",
+    "question": "Which Dockerfile instruction is used to define the command that runs when the container starts?",
+    "options": ["RUN", "CMD", "ENTRYPOINT", "Both CMD and ENTRYPOINT"],
+    "correctAnswerIndex": 3,
+    "explanation": "Both CMD and ENTRYPOINT define the command to run when container starts. ENTRYPOINT specifies the executable, while CMD provides default arguments. They can be used together for flexibility."
+  },
+  {
+    "id": 10,
+    "topic": "Azure Container Registry",
+    "question": "You need to automatically build and deploy container images when code is pushed to a Git repository. Which Azure Container Registry feature should you use?",
+    "options": ["Webhooks", "ACR Tasks", "Geo-replication", "Content trust"],
+    "correctAnswerIndex": 1,
+    "explanation": "ACR Tasks provides automated container image builds in the cloud, supporting build triggers from source code commits, base image updates, and scheduled builds."
+  },
+  {
+    "id": 11,
+    "topic": "Azure App Service",
+    "question": "Which App Service feature allows you to test different versions of your app with a percentage of user traffic?",
+    "options": ["A/B testing", "Testing in production", "Deployment slots", "Canary deployment"],
+    "correctAnswerIndex": 1,
+    "explanation": "Testing in production allows you to route a percentage of traffic to different deployment slots, enabling gradual rollout and A/B testing scenarios."
+  },
+  {
+    "id": 12,
+    "topic": "Azure Functions",
+    "question": "What is the maximum execution time for a Durable Function orchestration?",
+    "options": ["5 minutes", "10 minutes", "Unlimited with checkpointing", "24 hours"],
+    "correctAnswerIndex": 2,
+    "explanation": "Durable Functions can run indefinitely through checkpointing and replay. The orchestration history is persisted, allowing long-running workflows that survive function restarts."
+  },
+  {
+    "id": 13,
+    "topic": "Azure Container Instances",
+    "question": "Which Azure Container Instances restart policy should you use for a batch processing job that should run once and then stop?",
+    "options": ["Always", "Never", "OnFailure", "Once"],
+    "correctAnswerIndex": 1,
+    "explanation": "The 'Never' restart policy ensures the container runs once and stops after completion, suitable for batch jobs. 'OnFailure' restarts on errors, and 'Always' keeps it running."
+  },
+  {
+    "id": 14,
+    "topic": "Azure App Service",
+    "question": "You need to enable WebSocket support for a Node.js application in Azure App Service. What should you configure?",
+    "options": ["Enable WebSockets in Configuration settings", "Use Standard tier or higher", "Install WebSocket extension", "Both enable WebSockets and use Standard tier"],
+    "correctAnswerIndex": 0,
+    "explanation": "WebSockets can be enabled in the Configuration > General settings section of your App Service. It's available in all tiers including Free and Shared."
+  },
+  {
+    "id": 15,
+    "topic": "Azure Functions",
+    "question": "Which Azure Functions trigger should you use to process new files uploaded to Azure Blob Storage?",
+    "options": ["HTTP trigger", "Timer trigger", "Blob trigger", "Event Grid trigger"],
+    "correctAnswerIndex": 2,
+    "explanation": "Blob trigger automatically executes your function when a blob is added or updated in a specified container. Event Grid trigger can also work but requires additional configuration."
+  },
+  {
+    "id": 16,
+    "topic": "Azure Blob Storage",
+    "question": "You need to store large amounts of unstructured data that will be accessed infrequently. Which Azure Storage access tier should you use to minimize costs?",
+    "options": ["Hot", "Cool", "Archive", "Premium"],
+    "correctAnswerIndex": 2,
+    "explanation": "Archive tier is designed for data that is rarely accessed and stored for at least 180 days. It has the lowest storage cost but highest access costs and retrieval time."
+  },
+  {
+    "id": 17,
+    "topic": "Azure Blob Storage",
+    "question": "You need to implement lifecycle management for blob storage to automatically move blobs to cool tier after 30 days. What should you use?",
+    "options": ["Azure Functions with timer trigger", "Azure Logic Apps", "Azure Blob Storage lifecycle management policy", "Azure Automation"],
+    "correctAnswerIndex": 2,
+    "explanation": "Azure Blob Storage lifecycle management policies allow you to automatically transition blobs between access tiers or delete them based on rules. This is the native, cost-effective solution."
+  },
+  {
+    "id": 18,
+    "topic": "Azure Cosmos DB",
+    "question": "Which consistency level in Azure Cosmos DB provides the strongest consistency guarantee?",
+    "options": ["Eventual", "Consistent Prefix", "Session", "Strong"],
+    "correctAnswerIndex": 3,
+    "explanation": "Strong consistency guarantees that reads always return the most recent committed version of an item. It provides linearizability but has higher latency and lower availability compared to other consistency levels."
+  },
+  {
+    "id": 19,
+    "topic": "Azure Cosmos DB",
+    "question": "What is the recommended partition key strategy for Azure Cosmos DB to achieve optimal performance?",
+    "options": ["Use sequential IDs", "Use timestamp as partition key", "Choose a property with high cardinality", "Use the same partition key for all documents"],
+    "correctAnswerIndex": 2,
+    "explanation": "A good partition key has high cardinality (many distinct values) and evenly distributes requests and storage. Sequential IDs and timestamps can create hot partitions."
+  },
+  {
+    "id": 20,
+    "topic": "Azure Blob Storage",
+    "question": "Which type of blob is optimized for storing large binary files like videos and disk images?",
+    "options": ["Block blobs", "Page blobs", "Append blobs", "All types are the same"],
+    "correctAnswerIndex": 1,
+    "explanation": "Page blobs are optimized for random read/write operations and are used for VHD files and Azure VM disks. Block blobs are for general files, and append blobs for logs."
+  },
+  {
+    "id": 21,
+    "topic": "Azure Table Storage",
+    "question": "What is the maximum size of an entity in Azure Table Storage?",
+    "options": ["256 KB", "1 MB", "4 MB", "64 KB"],
+    "correctAnswerIndex": 1,
+    "explanation": "An entity in Azure Table Storage can be up to 1 MB in size, including all properties. Each property value can be up to 64 KB (for string properties) or appropriate size for its data type."
+  },
+  {
+    "id": 22,
+    "topic": "Azure Storage",
+    "question": "Which Azure Storage redundancy option provides the highest durability with replication across multiple regions?",
+    "options": ["LRS (Locally Redundant Storage)", "ZRS (Zone-Redundant Storage)", "GRS (Geo-Redundant Storage)", "GZRS (Geo-Zone-Redundant Storage)"],
+    "correctAnswerIndex": 3,
+    "explanation": "GZRS provides the highest durability by combining ZRS in the primary region with GRS across regions, offering protection against zone and regional failures."
+  },
+  {
+    "id": 23,
+    "topic": "Azure Cosmos DB",
+    "question": "Which API should you use in Azure Cosmos DB if you're migrating an existing MongoDB application?",
+    "options": ["SQL API", "MongoDB API", "Cassandra API", "Table API"],
+    "correctAnswerIndex": 1,
+    "explanation": "The MongoDB API provides wire protocol compatibility with MongoDB, allowing existing MongoDB apps to work with minimal changes. Just update the connection string."
+  },
+  {
+    "id": 24,
+    "topic": "Azure Blob Storage",
+    "question": "What is the purpose of a shared access signature (SAS) in Azure Storage?",
+    "options": ["Encrypt data at rest", "Provide temporary access to resources without sharing account keys", "Replicate data across regions", "Monitor storage access"],
+    "correctAnswerIndex": 1,
+    "explanation": "A SAS provides secure delegated access to resources with specified permissions and time constraints, without exposing your storage account keys."
+  },
+  {
+    "id": 25,
+    "topic": "Azure Cosmos DB",
+    "question": "What is the billing model for Azure Cosmos DB?",
+    "options": ["Per GB of storage only", "Per request only", "Per provisioned throughput (RU/s) and storage", "Free for first 1000 requests"],
+    "correctAnswerIndex": 2,
+    "explanation": "Azure Cosmos DB charges for provisioned throughput measured in Request Units per second (RU/s) and the storage consumed. You can also use serverless or autoscale modes."
+  },
+  {
+    "id": 26,
+    "topic": "Azure Storage",
+    "question": "Which Azure Storage service should you use for mounting a file share in multiple Azure VMs simultaneously?",
+    "options": ["Blob Storage", "Queue Storage", "File Storage", "Table Storage"],
+    "correctAnswerIndex": 2,
+    "explanation": "Azure File Storage provides fully managed file shares using SMB or NFS protocols that can be mounted by multiple VMs concurrently."
+  },
+  {
+    "id": 27,
+    "topic": "Azure Blob Storage",
+    "question": "You need to prevent blobs from being modified or deleted for compliance purposes. Which feature should you use?",
+    "options": ["Soft delete", "Blob versioning", "Immutable storage with legal hold or time-based retention", "Access tiers"],
+    "correctAnswerIndex": 2,
+    "explanation": "Immutable blob storage allows setting time-based retention policies or legal holds that prevent modification or deletion, meeting compliance requirements like SEC 17a-4."
+  },
+  {
+    "id": 28,
+    "topic": "Azure Cosmos DB",
+    "question": "What happens when you exceed the provisioned RU/s in Azure Cosmos DB?",
+    "options": ["Requests are queued", "Account is suspended", "Requests are rate-limited (HTTP 429)", "Automatic scaling occurs"],
+    "correctAnswerIndex": 2,
+    "explanation": "When throughput is exceeded, requests return HTTP 429 (Too Many Requests) and must be retried. The Cosmos DB SDK has built-in retry logic for this scenario."
+  },
+  {
+    "id": 29,
+    "topic": "Azure Storage",
+    "question": "Which protocol does Azure Queue Storage use for message operations?",
+    "options": ["AMQP", "HTTP/HTTPS REST", "MQTT", "WebSocket"],
+    "correctAnswerIndex": 1,
+    "explanation": "Azure Queue Storage uses HTTP/HTTPS REST API for all operations. For AMQP support, use Azure Service Bus instead."
+  },
+  {
+    "id": 30,
+    "topic": "Azure Blob Storage",
+    "question": "What is the maximum size of a block blob in Azure Storage?",
+    "options": ["5 GB", "50 GB", "190.7 TiB (approximately 200 TB)", "1 TB"],
+    "correctAnswerIndex": 2,
+    "explanation": "Block blobs support up to approximately 190.7 TiB (about 4.77 TB × 50,000 blocks). Each block can be up to 4000 MiB."
+  },
+  {
+    "id": 31,
+    "topic": "Azure Key Vault",
+    "question": "You are developing an application that needs to retrieve secrets from Azure Key Vault. Which authentication method is recommended for applications running in Azure?",
+    "options": ["Connection strings", "Service Principal with client secret", "Managed Identity", "Shared Access Signature"],
+    "correctAnswerIndex": 2,
+    "explanation": "Managed Identity is the recommended approach for applications running in Azure. It eliminates the need to manage credentials in code and provides automatic credential rotation."
+  },
+  {
+    "id": 32,
+    "topic": "Azure Active Directory",
+    "question": "Which OAuth 2.0 flow should a single-page application (SPA) use to authenticate users?",
+    "options": ["Authorization Code Flow", "Authorization Code Flow with PKCE", "Implicit Flow", "Client Credentials Flow"],
+    "correctAnswerIndex": 1,
+    "explanation": "Authorization Code Flow with PKCE (Proof Key for Code Exchange) is the recommended flow for SPAs. The implicit flow is being deprecated due to security concerns."
+  },
+  {
+    "id": 33,
+    "topic": "Azure Key Vault",
+    "question": "What are the three main types of objects you can store in Azure Key Vault?",
+    "options": ["Keys, Secrets, Passwords", "Keys, Secrets, Certificates", "Secrets, Tokens, Keys", "Keys, Certificates, Tokens"],
+    "correctAnswerIndex": 1,
+    "explanation": "Azure Key Vault stores three types of objects: cryptographic keys, secrets (like connection strings), and X.509 certificates with their private keys."
+  },
+  {
+    "id": 34,
+    "topic": "Managed Identity",
+    "question": "What is the difference between system-assigned and user-assigned managed identities?",
+    "options": ["System-assigned is automatic, user-assigned is manual", "System-assigned is tied to resource lifecycle, user-assigned is independent", "No difference", "User-assigned is only for VMs"],
+    "correctAnswerIndex": 1,
+    "explanation": "System-assigned identities are created automatically and deleted when the resource is deleted. User-assigned identities are standalone resources that can be shared across multiple Azure resources."
+  },
+  {
+    "id": 35,
+    "topic": "Azure AD B2C",
+    "question": "Which Azure service should you use to provide customer identity and access management with social identity providers?",
+    "options": ["Azure AD", "Azure AD B2B", "Azure AD B2C", "Azure AD Domain Services"],
+    "correctAnswerIndex": 2,
+    "explanation": "Azure AD B2C (Business to Consumer) provides identity services for customer-facing applications, supporting social identity providers like Facebook, Google, and custom policies."
+  },
+  {
+    "id": 36,
+    "topic": "Microsoft Graph",
+    "question": "What type of permissions should a daemon or service application use to call Microsoft Graph?",
+    "options": ["Delegated permissions", "Application permissions", "Either delegated or application", "No permissions needed"],
+    "correctAnswerIndex": 1,
+    "explanation": "Daemon and service applications run without a signed-in user and must use application permissions (app-only access). Delegated permissions require a user context."
+  },
+  {
+    "id": 37,
+    "topic": "Azure Key Vault",
+    "question": "Which Azure Key Vault tier should you use if you need Hardware Security Module (HSM) protected keys?",
+    "options": ["Standard", "Premium", "Both support HSM", "Enterprise"],
+    "correctAnswerIndex": 1,
+    "explanation": "Premium tier provides HSM-backed keys for enhanced security. Standard tier uses software-protected keys. Managed HSM is a separate offering for dedicated HSM."
+  },
+  {
+    "id": 38,
+    "topic": "Azure AD",
+    "question": "Which claim type in a JWT token uniquely identifies the user across applications?",
+    "options": ["sub (subject)", "oid (object ID)", "upn (user principal name)", "email"],
+    "correctAnswerIndex": 1,
+    "explanation": "The 'oid' (object ID) claim uniquely identifies a user across all applications in the directory. It never changes and is the recommended unique identifier."
+  },
+  {
+    "id": 39,
+    "topic": "CORS",
+    "question": "You need to allow a web application hosted on domain A to call your Azure Functions API on domain B. What should you configure?",
+    "options": ["IP restrictions", "CORS (Cross-Origin Resource Sharing)", "Authentication", "Virtual Network integration"],
+    "correctAnswerIndex": 1,
+    "explanation": "CORS must be configured to allow cross-origin requests from the web application's domain. Configure allowed origins in the Azure Function's CORS settings."
+  },
+  {
+    "id": 40,
+    "topic": "Azure Key Vault",
+    "question": "How can an application retrieve the latest version of a secret from Azure Key Vault?",
+    "options": ["Specify version in the URI", "Use 'latest' keyword", "Omit version from the secret URI", "Call GetLatestSecret() method"],
+    "correctAnswerIndex": 2,
+    "explanation": "When you reference a secret without specifying a version (e.g., https://vault.vault.azure.net/secrets/secret-name), Key Vault returns the latest enabled version."
+  },
+  {
+    "id": 41,
+    "topic": "Azure AD",
+    "question": "What is the maximum lifetime of an Azure AD access token?",
+    "options": ["5 minutes", "1 hour (default)", "24 hours", "7 days"],
+    "correctAnswerIndex": 1,
+    "explanation": "Access tokens have a default lifetime of 1 hour (60-90 minutes). Refresh tokens can be used to obtain new access tokens and have longer lifetimes."
+  },
+  {
+    "id": 42,
+    "topic": "Shared Access Signature",
+    "question": "Which type of SAS provides the most flexibility and security for Azure Storage?",
+    "options": ["Account SAS", "Service SAS", "User delegation SAS", "All are equal"],
+    "correctAnswerIndex": 2,
+    "explanation": "User delegation SAS is secured with Azure AD credentials instead of storage account keys, providing better security and audit capabilities. It's available for Blob and Data Lake Storage Gen2."
+  },
+  {
+    "id": 43,
+    "topic": "Azure AD",
+    "question": "Which OAuth 2.0 grant type should server-to-server applications use?",
+    "options": ["Authorization Code", "Implicit", "Client Credentials", "Resource Owner Password Credentials"],
+    "correctAnswerIndex": 2,
+    "explanation": "Client Credentials grant is designed for confidential client applications (like backend services) that authenticate using their own credentials, not on behalf of a user."
+  },
+  {
+    "id": 44,
+    "topic": "Azure RBAC",
+    "question": "At which scopes can you assign Azure RBAC roles?",
+    "options": ["Resource level only", "Resource group level only", "Management group, subscription, resource group, or resource level", "Subscription level only"],
+    "correctAnswerIndex": 2,
+    "explanation": "Azure RBAC assignments can be made at management group, subscription, resource group, or individual resource level. Assignments are inherited down the hierarchy."
+  },
+  {
+    "id": 45,
+    "topic": "App Configuration",
+    "question": "Which Azure service should you use to centrally manage application settings and feature flags?",
+    "options": ["Azure Key Vault", "Azure App Configuration", "Application Settings in App Service", "Azure Blob Storage"],
+    "correctAnswerIndex": 1,
+    "explanation": "Azure App Configuration is designed for centralized application settings, feature flags, and configuration management across multiple applications and environments."
+  },
+  {
+    "id": 46,
+    "topic": "Azure Monitor",
+    "question": "You need to create custom metrics for your application. Which Azure Monitor feature should you use?",
+    "options": ["Log Analytics", "Application Insights", "Azure Monitor Metrics", "Activity Log"],
+    "correctAnswerIndex": 1,
+    "explanation": "Application Insights allows you to track custom metrics using TrackMetric() method. It's designed for application performance monitoring and custom telemetry."
+  },
+  {
+    "id": 47,
+    "topic": "Application Insights",
+    "question": "Which Application Insights feature helps you identify performance bottlenecks in your application?",
+    "options": ["Live Metrics", "Application Map", "Profiler", "Snapshot Debugger"],
+    "correctAnswerIndex": 2,
+    "explanation": "Application Insights Profiler collects performance traces showing which code paths consume the most time, helping identify bottlenecks. Application Map shows dependencies."
+  },
+  {
+    "id": 48,
+    "topic": "Azure Cache for Redis",
+    "question": "Which Azure Cache for Redis tier should you use for production workloads that require high availability with SLA?",
+    "options": ["Basic", "Standard", "Premium", "Both Standard and Premium"],
+    "correctAnswerIndex": 3,
+    "explanation": "Both Standard and Premium tiers provide high availability with SLA and data replication. Basic tier does not include replication or SLA and is suitable only for development/testing."
+  },
+  {
+    "id": 49,
+    "topic": "Application Insights",
+    "question": "What is the default sampling rate for Application Insights when automatic sampling is enabled?",
+    "options": ["10%", "50%", "Adaptive (varies)", "100% (no sampling)"],
+    "correctAnswerIndex": 2,
+    "explanation": "Application Insights uses adaptive sampling by default, automatically adjusting the sampling rate based on telemetry volume to stay within throttling limits while preserving statistical correctness."
+  },
+  {
+    "id": 50,
+    "topic": "Azure CDN",
+    "question": "Which Azure CDN feature allows you to create custom caching rules based on request properties?",
+    "options": ["Caching rules", "Rules engine", "Query string caching", "Compression"],
+    "correctAnswerIndex": 1,
+    "explanation": "The Rules Engine (available in Premium tiers) provides powerful, customizable rules to control CDN behavior based on URL paths, headers, query strings, and other request properties."
+  },
+  {
+    "id": 51,
+    "topic": "Azure Monitor",
+    "question": "What is the maximum retention period for Azure Monitor Logs in a Log Analytics workspace?",
+    "options": ["30 days", "90 days", "730 days (2 years) by default, up to 12 years", "1 year"],
+    "correctAnswerIndex": 2,
+    "explanation": "Log Analytics workspaces retain data for 30-730 days (configurable), with an option to extend retention up to 12 years through data retention pricing."
+  },
+  {
+    "id": 52,
+    "topic": "Application Insights",
+    "question": "Which Application Insights feature automatically captures production exceptions with code snapshots?",
+    "options": ["Profiler", "Live Metrics", "Snapshot Debugger", "Availability tests"],
+    "correctAnswerIndex": 2,
+    "explanation": "Snapshot Debugger automatically collects debug snapshots when exceptions occur in production, allowing you to see the state of variables without impacting performance."
+  },
+  {
+    "id": 53,
+    "topic": "Azure Cache for Redis",
+    "question": "What is the purpose of Redis clustering in Azure Cache for Redis Premium tier?",
+    "options": ["High availability only", "Distribute data across multiple nodes for scale", "Backup and restore", "Geo-replication"],
+    "correctAnswerIndex": 1,
+    "explanation": "Redis clustering distributes data across multiple nodes (shards), allowing horizontal scale beyond the memory limits of a single node, supporting caches up to 120 GB."
+  },
+  {
+    "id": 54,
+    "topic": "Azure Monitor",
+    "question": "Which query language is used to analyze data in Azure Monitor Logs?",
+    "options": ["SQL", "KQL (Kusto Query Language)", "PowerShell", "JSON"],
+    "correctAnswerIndex": 1,
+    "explanation": "Kusto Query Language (KQL) is used to query data in Azure Monitor Logs, Application Insights, and other Azure data services. It's optimized for log analytics."
+  },
+  {
+    "id": 55,
+    "topic": "Application Insights",
+    "question": "What type of telemetry tracks user interactions like page views and custom events?",
+    "options": ["Request telemetry", "Dependency telemetry", "Event telemetry", "Metric telemetry"],
+    "correctAnswerIndex": 2,
+    "explanation": "Event telemetry (TrackEvent) tracks custom user interactions and business events. Request telemetry tracks HTTP requests, while dependency telemetry tracks external calls."
+  },
+  {
+    "id": 56,
+    "topic": "Azure Monitor",
+    "question": "You need to trigger an action when CPU usage exceeds 80% for 5 minutes. What should you create?",
+    "options": ["Log query", "Metric alert", "Activity log alert", "Service health alert"],
+    "correctAnswerIndex": 1,
+    "explanation": "Metric alerts evaluate metric values at regular intervals and trigger actions when conditions are met. They support aggregations over time windows like 5 minutes."
+  },
+  {
+    "id": 57,
+    "topic": "Azure CDN",
+    "question": "What is the main benefit of using Azure CDN for your web application?",
+    "options": ["Reduced storage costs", "Improved security", "Reduced latency by caching content closer to users", "Automatic scaling"],
+    "correctAnswerIndex": 2,
+    "explanation": "Azure CDN caches content at edge locations worldwide, reducing latency by serving content from locations closer to users. It also reduces load on origin servers."
+  },
+  {
+    "id": 58,
+    "topic": "Application Insights",
+    "question": "Which method should you call to track custom dependencies in Application Insights?",
+    "options": ["TrackDependency()", "TrackRequest()", "TrackEvent()", "TrackMetric()"],
+    "correctAnswerIndex": 0,
+    "explanation": "TrackDependency() records calls to external services, databases, REST APIs, or any external component. It tracks duration, success/failure, and dependency type."
+  },
+  {
+    "id": 59,
+    "topic": "Azure Cache for Redis",
+    "question": "Which eviction policy should you configure for Azure Cache for Redis when using it as a traditional cache?",
+    "options": ["noeviction", "allkeys-lru", "volatile-lru", "allkeys-random"],
+    "correctAnswerIndex": 1,
+    "explanation": "allkeys-lru removes least recently used keys from all keys when memory limit is reached, suitable for cache scenarios. volatile-lru only removes keys with expiration set."
+  },
+  {
+    "id": 60,
+    "topic": "Application Insights",
+    "question": "How long does Application Insights retain raw telemetry data by default?",
+    "options": ["30 days", "90 days", "180 days", "365 days"],
+    "correctAnswerIndex": 1,
+    "explanation": "Application Insights retains raw telemetry for 90 days by default. You can export to storage for longer retention or use continuous export for extended analysis."
+  },
+  {
+    "id": 61,
+    "topic": "Azure API Management",
+    "question": "You need to implement rate limiting for an API in Azure API Management. Which policy should you use?",
+    "options": ["rate-limit", "quota", "rate-limit-by-key", "throttle"],
+    "correctAnswerIndex": 0,
+    "explanation": "The rate-limit policy prevents API usage spikes by limiting call rate to a specified number per a specified time period. rate-limit-by-key allows rate limiting per key (like per subscription)."
+  },
+  {
+    "id": 62,
+    "topic": "Azure Service Bus",
+    "question": "What is the maximum message size for Azure Service Bus Premium tier?",
+    "options": ["256 KB", "1 MB", "100 MB", "Unlimited"],
+    "correctAnswerIndex": 2,
+    "explanation": "Azure Service Bus Premium tier supports messages up to 100 MB. Standard tier supports up to 256 KB (or 1 MB for large messages with specific configuration)."
+  },
+  {
+    "id": 63,
+    "topic": "Azure Event Grid",
+    "question": "Which delivery guarantee does Azure Event Grid provide?",
+    "options": ["Exactly once", "At least once", "At most once", "No guarantee"],
+    "correctAnswerIndex": 1,
+    "explanation": "Azure Event Grid provides at least once delivery. Events are delivered at least once to each subscription, but the same event may be delivered more than once, so handlers should be idempotent."
+  },
+  {
+    "id": 64,
+    "topic": "Azure Logic Apps",
+    "question": "Which trigger type should you use in Azure Logic Apps to process messages from Azure Service Bus?",
+    "options": ["HTTP trigger", "Recurrence trigger", "Service Bus trigger", "Event Grid trigger"],
+    "correctAnswerIndex": 2,
+    "explanation": "Azure Logic Apps provides a built-in Service Bus trigger that automatically polls for messages from Service Bus queues or topics and processes them."
+  },
+  {
+    "id": 65,
+    "topic": "Azure Service Bus",
+    "question": "What is the key difference between Azure Service Bus queues and topics?",
+    "options": ["Size limits", "Queues are FIFO, topics support publish-subscribe", "Performance", "Cost"],
+    "correctAnswerIndex": 1,
+    "explanation": "Queues provide point-to-point communication (one consumer). Topics support publish-subscribe pattern with multiple subscribers receiving copies of messages through subscriptions."
+  },
+  {
+    "id": 66,
+    "topic": "Azure Event Hub",
+    "question": "What is the primary use case for Azure Event Hubs?",
+    "options": ["Request-response messaging", "Big data streaming and event ingestion", "File storage", "Batch processing"],
+    "correctAnswerIndex": 1,
+    "explanation": "Azure Event Hubs is designed for big data streaming scenarios, ingesting millions of events per second for real-time analytics, telemetry, and event streaming pipelines."
+  },
+  {
+    "id": 67,
+    "topic": "Azure API Management",
+    "question": "Which APIM policy section should you use to modify the response before sending it to the client?",
+    "options": ["inbound", "backend", "outbound", "on-error"],
+    "correctAnswerIndex": 2,
+    "explanation": "The outbound section executes after the backend response is received and before sending to the client. Use it to modify responses, add headers, or transform data."
+  },
+  {
+    "id": 68,
+    "topic": "Azure Event Grid",
+    "question": "What is the maximum event size in Azure Event Grid?",
+    "options": ["64 KB", "256 KB", "1 MB", "10 MB"],
+    "correctAnswerIndex": 2,
+    "explanation": "Azure Event Grid supports events up to 1 MB. The first 64 KB is covered by the base price, and additional capacity is charged in 64 KB increments."
+  },
+  {
+    "id": 69,
+    "topic": "Azure Service Bus",
+    "question": "Which Service Bus feature ensures messages are processed exactly once even if the receiver crashes?",
+    "options": ["Peek-Lock mode", "Sessions", "Dead-letter queue", "Duplicate detection"],
+    "correctAnswerIndex": 0,
+    "explanation": "Peek-Lock mode locks the message during processing. If the receiver crashes before completing, the lock expires and the message becomes available again. Complete() removes it permanently."
+  },
+  {
+    "id": 70,
+    "topic": "Azure API Management",
+    "question": "Which APIM feature allows you to cache backend responses to improve performance?",
+    "options": ["Response caching policy", "Redis cache", "CDN integration", "Built-in memory cache"],
+    "correctAnswerIndex": 0,
+    "explanation": "The cache-lookup and cache-store policies enable response caching in APIM. Responses are cached in built-in or external Redis cache based on cache keys."
+  },
+  {
+    "id": 71,
+    "topic": "Azure Event Hub",
+    "question": "What is a partition in Azure Event Hubs?",
+    "options": ["A backup copy", "An ordered sequence of events", "A consumer group", "A subscription"],
+    "correctAnswerIndex": 1,
+    "explanation": "A partition is an ordered sequence of events within an Event Hub. Partitions enable parallel processing and help distribute load across multiple consumers."
+  },
+  {
+    "id": 72,
+    "topic": "Azure Service Bus",
+    "question": "What happens to a message that exceeds the maximum delivery count in Azure Service Bus?",
+    "options": ["It's deleted permanently", "It's sent to the dead-letter queue", "It remains in the queue indefinitely", "It's automatically retried"],
+    "correctAnswerIndex": 1,
+    "explanation": "When a message exceeds the MaxDeliveryCount (default 10), it's automatically moved to the dead-letter queue for investigation and manual handling."
+  },
+  {
+    "id": 73,
+    "topic": "Azure API Management",
+    "question": "Which authentication mechanism allows APIM to authenticate with backend services using certificates?",
+    "options": ["Basic authentication", "OAuth 2.0", "Client certificate", "API key"],
+    "correctAnswerIndex": 2,
+    "explanation": "APIM supports mutual TLS authentication using client certificates to securely authenticate with backend services. Upload certificates to APIM and configure in policies."
+  },
+  {
+    "id": 74,
+    "topic": "Azure Event Grid",
+    "question": "Which Azure Event Grid filtering option allows you to filter events based on data values?",
+    "options": ["Subject filtering", "Event type filtering", "Advanced filtering", "All of the above"],
+    "correctAnswerIndex": 3,
+    "explanation": "Event Grid supports subject filtering (prefix/suffix), event type filtering, and advanced filtering on data properties using operators like StringContains, NumberGreaterThan, etc."
+  },
+  {
+    "id": 75,
+    "topic": "Azure Logic Apps",
+    "question": "Which Logic Apps action allows you to call Azure Functions?",
+    "options": ["HTTP action", "Azure Functions action", "Function App action", "All of the above"],
+    "correctAnswerIndex": 1,
+    "explanation": "While you can use HTTP action, the dedicated Azure Functions action provides better integration, automatic authentication, and easier configuration for calling Functions."
+  },
+  {
+    "id": 76,
+    "topic": "Azure Functions",
+    "question": "Which Durable Functions pattern should you use when you need to execute multiple activities in parallel and wait for all to complete?",
+    "options": ["Function chaining", "Fan-out/fan-in", "Async HTTP APIs", "Monitor"],
+    "correctAnswerIndex": 1,
+    "explanation": "Fan-out/fan-in pattern executes multiple functions in parallel (fan-out), then waits for all to complete before aggregating results (fan-in). Use Task.WhenAll() in the orchestrator."
+  },
+  {
+    "id": 77,
+    "topic": "Azure Kubernetes Service",
+    "question": "What is the purpose of a Kubernetes ingress controller in AKS?",
+    "options": ["Load balancing pods", "Managing external access to services in the cluster", "Storage management", "Pod autoscaling"],
+    "correctAnswerIndex": 1,
+    "explanation": "An ingress controller manages external HTTP/HTTPS access to services in the cluster, providing load balancing, SSL termination, and name-based virtual hosting."
+  },
+  {
+    "id": 78,
+    "topic": "Azure App Service",
+    "question": "Which App Service feature allows you to run background tasks that are triggered by a schedule or queue messages?",
+    "options": ["App Service Plans", "WebJobs", "Deployment Slots", "Virtual Network Integration"],
+    "correctAnswerIndex": 1,
+    "explanation": "WebJobs allow you to run background tasks in the same context as your web app. They can be triggered continuously, on schedule (CRON), or by queue messages."
+  },
+  {
+    "id": 79,
+    "topic": "Azure Cosmos DB",
+    "question": "Which indexing policy in Cosmos DB provides the best write performance?",
+    "options": ["Consistent indexing", "Lazy indexing", "None (disable indexing)", "Automatic indexing"],
+    "correctAnswerIndex": 2,
+    "explanation": "Disabling indexing provides the best write performance but prevents querying. Consistent indexing updates indexes synchronously. Use selective indexing for specific properties to balance performance."
+  },
+  {
+    "id": 80,
+    "topic": "Azure Storage",
+    "question": "What is the purpose of soft delete in Azure Blob Storage?",
+    "options": ["Encrypt data", "Allow recovery of deleted blobs and snapshots", "Compress data", "Replicate data"],
+    "correctAnswerIndex": 1,
+    "explanation": "Soft delete protects blob data from accidental deletion by retaining deleted blobs and snapshots for a specified retention period (1-365 days), allowing recovery."
+  },
+  {
+    "id": 81,
+    "topic": "Azure API Management",
+    "question": "Which APIM tier supports deployment in multiple Azure regions?",
+    "options": ["Developer", "Basic", "Standard", "Premium"],
+    "correctAnswerIndex": 3,
+    "explanation": "Premium tier supports multi-region deployment, allowing you to deploy the same APIM instance to multiple Azure regions for high availability and reduced latency."
+  },
+  {
+    "id": 82,
+    "topic": "Azure Functions",
+    "question": "Which Functions extension allows you to automatically retry failed function executions?",
+    "options": ["Durable Functions", "Fixed delay retry policy", "Exponential backoff retry policy", "Both fixed delay and exponential backoff"],
+    "correctAnswerIndex": 3,
+    "explanation": "Azure Functions supports built-in retry policies including fixed delay and exponential backoff. Configure in host.json for automatic retries on transient failures."
+  },
+  {
+    "id": 83,
+    "topic": "Azure Service Bus",
+    "question": "What is the purpose of message sessions in Azure Service Bus?",
+    "options": ["Encryption", "Guaranteed FIFO processing of related messages", "Compression", "Filtering"],
+    "correctAnswerIndex": 1,
+    "explanation": "Sessions enable FIFO (First-In-First-Out) guarantee for related messages identified by a SessionId. All messages with the same SessionId are routed to the same receiver."
+  },
+  {
+    "id": 84,
+    "topic": "Azure Blob Storage",
+    "question": "Which Blob Storage redundancy option provides read access to data in the secondary region?",
+    "options": ["GRS", "RA-GRS", "LRS", "ZRS"],
+    "correctAnswerIndex": 1,
+    "explanation": "RA-GRS (Read-Access Geo-Redundant Storage) replicates data to a secondary region and provides read access to the secondary. GRS replicates but doesn't allow reads from secondary."
+  },
+  {
+    "id": 85,
+    "topic": "Application Insights",
+    "question": "What is the purpose of telemetry correlation in Application Insights?",
+    "options": ["Reduce costs", "Track related telemetry items across distributed components", "Compress data", "Filter telemetry"],
+    "correctAnswerIndex": 1,
+    "explanation": "Telemetry correlation links related telemetry (requests, dependencies, exceptions) across microservices using operation IDs, enabling end-to-end transaction tracking in distributed systems."
+  },
+  {
+    "id": 86,
+    "topic": "Azure Container Registry",
+    "question": "Which feature of Azure Container Registry allows you to automatically remove old unused images?",
+    "options": ["Webhooks", "Tasks", "Retention policy", "Geo-replication"],
+    "correctAnswerIndex": 2,
+    "explanation": "Retention policies (preview feature) automatically remove untagged manifests after a specified number of days, helping manage storage costs by removing old unused images."
+  },
+  {
+    "id": 87,
+    "topic": "Azure Event Hub",
+    "question": "What is the purpose of consumer groups in Azure Event Hubs?",
+    "options": ["Partition data", "Allow multiple consuming applications to have separate views of the event stream", "Increase throughput", "Compress events"],
+    "correctAnswerIndex": 1,
+    "explanation": "Consumer groups allow multiple consuming applications to independently read from the event hub, each maintaining its own position in the stream without affecting others."
+  },
+  {
+    "id": 88,
+    "topic": "Azure Key Vault",
+    "question": "What is the purpose of Key Vault's soft delete feature?",
+    "options": ["Encrypt keys", "Allow recovery of deleted vaults and secrets", "Rotate keys automatically", "Replicate keys"],
+    "correctAnswerIndex": 1,
+    "explanation": "Soft delete retains deleted vaults, keys, secrets, and certificates for a retention period (7-90 days), allowing recovery from accidental deletion. Purge protection prevents permanent deletion."
+  },
+  {
+    "id": 89,
+    "topic": "Azure Cosmos DB",
+    "question": "What is the minimum RU/s you can provision for a Cosmos DB container?",
+    "options": ["100 RU/s", "400 RU/s", "1000 RU/s", "Depends on partition key"],
+    "correctAnswerIndex": 1,
+    "explanation": "The minimum provisioned throughput for a container is 400 RU/s (or 100 RU/s per partition if using shared throughput at database level). Serverless mode has no minimum."
+  },
+  {
+    "id": 90,
+    "topic": "Azure Logic Apps",
+    "question": "Which Logic Apps pricing model charges based on action executions and connector usage?",
+    "options": ["Consumption", "Standard", "Premium", "Both Consumption and Standard"],
+    "correctAnswerIndex": 0,
+    "explanation": "Consumption plan charges per action execution and connector usage. Standard plan (running on App Service) uses App Service pricing with included action executions."
+  },
+  {
+    "id": 91,
+    "topic": "Azure Functions",
+    "question": "Which binding attribute parameter is required to specify the direction of a binding?",
+    "options": ["Name", "Direction", "Connection", "Type"],
+    "correctAnswerIndex": 1,
+    "explanation": "The Direction parameter specifies whether the binding is for input (In), output (Out), or both (InOut). This is required for all bindings in function.json or attributes."
+  },
+  {
+    "id": 92,
+    "topic": "Azure API Management",
+    "question": "Which built-in group in APIM represents all authenticated users?",
+    "options": ["Administrators", "Developers", "Authenticated users", "Users"],
+    "correctAnswerIndex": 1,
+    "explanation": "APIM has three built-in groups: Administrators (Azure subscription admins), Developers (authenticated developer portal users), and Guests (unauthenticated developer portal users)."
+  },
+  {
+    "id": 93,
+    "topic": "Azure App Service",
+    "question": "What is the maximum number of deployment slots available in Premium App Service plan?",
+    "options": ["5", "10", "20", "Unlimited"],
+    "correctAnswerIndex": 2,
+    "explanation": "Premium (v1, v2, v3) and Isolated tiers support up to 20 deployment slots. Standard tier supports 5 slots. Basic, Free, and Shared don't support slots."
+  },
+  {
+    "id": 94,
+    "topic": "Azure Service Bus",
+    "question": "What is the maximum Time To Live (TTL) for a Service Bus message?",
+    "options": ["1 day", "7 days", "14 days", "TimeSpan.MaxValue (about 29,000 years)"],
+    "correctAnswerIndex": 3,
+    "explanation": "Service Bus supports TimeSpan.MaxValue as TTL (approximately 29,000 years), effectively unlimited. Default is TimeSpan.MaxValue. Expired messages move to dead-letter queue if configured."
+  },
+  {
+    "id": 95,
+    "topic": "Azure Cosmos DB",
+    "question": "Which Cosmos DB feature allows you to automatically expire documents after a specified time?",
+    "options": ["Lifecycle management", "TTL (Time To Live)", "Scheduled deletion", "Automatic archival"],
+    "correctAnswerIndex": 1,
+    "explanation": "TTL (Time To Live) automatically deletes documents after a specified period. Configure at container or per-document level. Expired documents are deleted in the background without consuming RUs."
+  },
+  {
+    "id": 96,
+    "topic": "Azure Event Grid",
+    "question": "What is the maximum retry duration for Event Grid event delivery?",
+    "options": ["1 hour", "24 hours", "7 days", "30 days"],
+    "correctAnswerIndex": 1,
+    "explanation": "Event Grid retries delivery for up to 24 hours using exponential backoff. After 24 hours, events are either dropped or sent to a dead-letter location if configured."
+  },
+  {
+    "id": 97,
+    "topic": "Azure Cache for Redis",
+    "question": "Which Redis data structure should you use to implement a leaderboard?",
+    "options": ["List", "Set", "Sorted Set", "Hash"],
+    "correctAnswerIndex": 2,
+    "explanation": "Sorted Sets (ZSET) are ideal for leaderboards as they maintain elements sorted by score, supporting efficient range queries and rank lookups with O(log N) complexity."
+  },
+  {
+    "id": 98,
+    "topic": "Azure Functions",
+    "question": "Which Functions feature allows you to connect to resources in a virtual network?",
+    "options": ["VNet Integration", "Hybrid Connections", "Private Endpoints", "All of the above"],
+    "correctAnswerIndex": 3,
+    "explanation": "Functions support VNet Integration (outbound access to VNet), Hybrid Connections (access to on-premises resources), and Private Endpoints (inbound private access). Premium or Dedicated plans required."
+  },
+  {
+    "id": 99,
+    "topic": "Azure Blob Storage",
+    "question": "Which blob type should you use for streaming scenarios like video playback?",
+    "options": ["Block blob", "Append blob", "Page blob", "Any blob type"],
+    "correctAnswerIndex": 0,
+    "explanation": "Block blobs are optimized for streaming and large file uploads with blocks up to 4000 MiB each. They support efficient range reads for video streaming and partial downloads."
+  },
+  {
+    "id": 100,
+    "topic": "Application Insights",
+    "question": "Which Application Insights SDK method should you use to manually track page views in a SPA?",
+    "options": ["trackPageView()", "trackEvent()", "trackRequest()", "trackMetric()"],
+    "correctAnswerIndex": 0,
+    "explanation": "Use trackPageView() to manually track page views in single-page applications. Traditional page loads are tracked automatically, but SPAs require manual tracking for route changes."
+  }
+]

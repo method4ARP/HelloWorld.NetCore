@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "AZ-204 Exam Quiz";
+}
+
+<div style="max-width: 800px; margin: 50px auto; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <h1 style="color: #0078d4; text-align: center;">Microsoft AZ-204 Exam Practice Quiz</h1>
+    <p style="text-align: center; font-size: 18px; color: #666;">Developing Solutions for Microsoft Azure</p>
+    
+    <div style="margin: 40px 0; padding: 30px; background-color: #f8f9fa; border-radius: 8px;">
+        <h2 style="color: #333;">About This Quiz</h2>
+        <ul style="line-height: 2; color: #555;">
+            <li><strong>100 comprehensive questions</strong> covering all AZ-204 exam objectives</li>
+            <li>Topics include: Azure App Service, Functions, Storage, Cosmos DB, Containers, Security, and more</li>
+            <li>Instant feedback with detailed explanations</li>
+            <li>Track your score and time taken</li>
+            <li>Covers all major exam domains: Compute (25-30%), Storage (15-20%), Security (20-25%), Monitoring (15-20%), Integration (15-20%)</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <form asp-action="Start" method="post">
+            <button type="submit" style="background-color: #0078d4; color: white; border: none; padding: 15px 40px; font-size: 18px; border-radius: 5px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                Start Quiz
+            </button>
+        </form>
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; background-color: #fff4ce; border-left: 4px solid #ffc107; border-radius: 4px;">
+        <h3 style="color: #856404; margin-top: 0;">📚 Exam Topics Covered:</h3>
+        <ul style="color: #856404; columns: 2;">
+            <li>Azure App Service</li>
+            <li>Azure Functions</li>
+            <li>Azure Storage</li>
+            <li>Azure Cosmos DB</li>
+            <li>Container Solutions</li>
+            <li>Azure Key Vault</li>
+            <li>API Management</li>
+            <li>Service Bus & Event Grid</li>
+            <li>Azure Cache for Redis</li>
+            <li>Azure Monitor</li>
+            <li>Azure AD Authentication</li>
+            <li>Logic Apps</li>
+        </ul>
+    </div>
+</div>
