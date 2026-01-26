@@ -1,0 +1,208 @@
+@model HelloWorld.NetCore.Models.BibleReadingPlan
+@{
+    ViewData["Title"] = "Bible Reading Plan";
+    var currentAgeGroup = ViewContext.HttpContext.Request.Query["ageGroup"].ToString();
+    var currentGender = ViewContext.HttpContext.Request.Query["gender"].ToString();
+    if (string.IsNullOrEmpty(currentAgeGroup)) currentAgeGroup = "Adult";
+    if (string.IsNullOrEmpty(currentGender)) currentGender = "All";
+}
+
+<div class="container">
+    <div class="text-center mb-4">
+        <h1 class="display-4">📖 Weekly Bible Reading Plan</h1>
+        <p class="lead text-muted">Week @Model.Week of @DateTime.Now.Year</p>
+        <p class="text-info small">✨ AI-Generated Personalized Reading Plan</p>
+    </div>
+
+    <!-- Selection Form -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Customize Your Reading Plan</h5>
+                    <form id="filterForm" method="get" action="@Url.Action("Index", "Bible")">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="ageGroup" class="form-label">Age Group</label>
+                                <select class="form-select" id="ageGroup" name="ageGroup" onchange="document.getElementById('filterForm').submit()">
+                                    <option value="Child" selected="@(currentAgeGroup == "Child")">Child (5-12)</option>
+                                    <option value="Teen" selected="@(currentAgeGroup == "Teen")">Teen (13-17)</option>
+                                    <option value="YoungAdult" selected="@(currentAgeGroup == "YoungAdult")">Young Adult (18-30)</option>
+                                    <option value="Adult" selected="@(currentAgeGroup == "Adult")">Adult (31-60)</option>
+                                    <option value="Senior" selected="@(currentAgeGroup == "Senior")">Senior (60+)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="gender" class="form-label">Gender</label>
+                                <select class="form-select" id="gender" name="gender" onchange="document.getElementById('filterForm').submit()">
+                                    <option value="All" selected="@(currentGender == "All")">All</option>
+                                    <option value="Male" selected="@(currentGender == "Male")">Male</option>
+                                    <option value="Female" selected="@(currentGender == "Female")">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            @foreach (var reading in Model.Readings)
+            {
+                var collapseId = "collapse_" + reading.Day.Replace(" ", "");
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                                <h5 class="card-title mb-0 text-primary">@reading.Day</h5>
+                            </div>
+                            <div class="col-md-5">
+                                <h6 class="mb-1">@reading.Reading</h6>
+                                <p class="text-muted small mb-0">@reading.Notes</p>
+                            </div>
+                            <div class="col-md-5 text-end">
+                                <button class="btn btn-sm btn-outline-primary me-2" 
+                                        type="button" 
+                                        data-bs-toggle="collapse" 
+                                        data-bs-target="#@collapseId"
+                                        onclick="loadVerses('@collapseId', '@reading.Reading')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                                        <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                                    </svg>
+                                    Read Verses
+                                </button>
+                                <div class="form-check d-inline-block">
+                                    <input class="form-check-input" 
+                                           type="checkbox" 
+                                           id="check_@reading.Day"
+                                           onchange="toggleComplete(this, '@reading.Day', '@currentAgeGroup', '@currentGender')">
+                                    <label class="form-check-label" for="check_@reading.Day">
+                                        Complete
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapse mt-3" id="@collapseId">
+                            <div class="card card-body bg-light">
+                                <div class="spinner-border spinner-border-sm text-primary mb-2" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <div class="verse-content">Loading verses...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-8">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h5 class="card-title">💡 Reading Tips</h5>
+                    <ul class="mb-0">
+                        <li>Set aside a specific time each day for reading</li>
+                        <li>Find a quiet place free from distractions</li>
+                        <li>Pray before reading, asking God to speak to you</li>
+                        <li>Take notes on what stands out to you</li>
+                        <li>Reflect on how the passage applies to your life</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        transition: transform 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-2px);
+    }
+    .form-check-input:checked ~ .form-check-label {
+        text-decoration: line-through;
+        color: #6c757d;
+    }
+</style>
+
+<script>
+    var loadedVerses = {};
+
+    // Load completion status from localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+        var storageKey = 'bible_@currentAgeGroup' + '_@currentGender';
+        @foreach (var reading in Model.Readings)
+        {
+            var jsDay = reading.Day.Replace(" ", "");
+            @:var saved_@jsDay = localStorage.getItem(storageKey + '_@reading.Day');
+            @:if (saved_@jsDay === 'true') {
+            @:    var checkbox = document.getElementById('check_@reading.Day');
+            @:    if (checkbox) {
+            @:        checkbox.checked = true;
+            @:        checkbox.closest('.card').classList.add('bg-light');
+            @:    }
+            @:}
+        }
+    });
+
+    function toggleComplete(checkbox, day, ageGroup, gender) {
+        var storageKey = 'bible_' + ageGroup + '_' + gender + '_' + day;
+        localStorage.setItem(storageKey, checkbox.checked);
+        var card = checkbox.closest('.card');
+        if (checkbox.checked) {
+            card.classList.add('bg-light');
+        } else {
+            card.classList.remove('bg-light');
+        }
+    }
+
+    async function loadVerses(collapseId, reading) {
+        // Check if already loaded
+        if (loadedVerses[collapseId]) {
+            return;
+        }
+
+        var container = document.querySelector('#' + collapseId + ' .verse-content');
+        var spinner = document.querySelector('#' + collapseId + ' .spinner-border');
+
+        try {
+            // Parse the reading reference
+            var cleanReading = reading.trim();
+            
+            // Call Bible API (using bible-api.com - free, no auth needed)
+            var apiUrl = 'https://bible-api.com/' + encodeURIComponent(cleanReading);
+            
+            var response = await fetch(apiUrl);
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch verses');
+            }
+
+            var data = await response.json();
+            
+            spinner.style.display = 'none';
+            
+            if (data.text) {
+                container.innerHTML = '<h6 class="text-primary mb-2">' + data.reference + '</h6>' +
+                                    '<p class="mb-0" style="white-space: pre-line; line-height: 1.8;">' + 
+                                    data.text.trim() + '</p>' +
+                                    '<small class="text-muted mt-2 d-block">Translation: ' + data.translation_name + '</small>';
+                loadedVerses[collapseId] = true;
+            } else {
+                container.innerHTML = '<p class="text-muted mb-0">Verses not found. Please check the reference format.</p>';
+            }
+        } catch (error) {
+            spinner.style.display = 'none';
+            container.innerHTML = '<div class="alert alert-warning mb-0">' +
+                                '<strong>Could not load verses.</strong><br>' +
+                                'Reference: ' + reading + '<br>' +
+                                'You can read this passage at <a href="https://www.biblegateway.com/passage/?search=' + 
+                                encodeURIComponent(reading) + '&version=NIV" target="_blank">BibleGateway</a>' +
+                                '</div>';
+        }
+    }
+</script>
