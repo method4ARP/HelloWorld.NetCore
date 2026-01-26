@@ -1,0 +1,43 @@
+@model HelloWorld.NetCore.Models.PhotoGalleryIndexViewModel
+@{
+    ViewData["Title"] = "Photo Gallery";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Photo Gallery</h1>
+    <p class="lead">Choose a photo set to view</p>
+
+    @if (Model.PhotoSets.Any())
+    {
+        <div class="row mt-5">
+            @foreach (var photoSet in Model.PhotoSets)
+            {
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@photoSet.Name</h5>
+                            <p class="card-text text-muted">@photoSet.PhotoCount photo@(photoSet.PhotoCount != 1 ? "s" : "")</p>
+                            <a href="@Url.Action("ViewSet", "Photos", new { setName = photoSet.Name })" 
+                               class="btn btn-primary mt-auto">View Photos</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info mt-5">
+            No photo sets found. Add folders to the Data/Photos directory to create photo sets.
+        </div>
+    }
+</div>
+
+<style>
+    .card {
+        transition: transform 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+</style>

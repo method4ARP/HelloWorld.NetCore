@@ -1,0 +1,145 @@
+@model HelloWorld.NetCore.Models.PhotoGalleryViewModel
+@{
+    ViewData["Title"] = Model.SetName;
+}
+
+<div class="container">
+    <div class="text-center mb-4">
+        <h1 class="display-4">@Model.SetName</h1>
+        <p class="text-muted">@Model.PhotoFiles.Count photo@(Model.PhotoFiles.Count != 1 ? "s" : "")</p>
+        <a href="@Url.Action("Index", "Photos")" class="btn btn-secondary mb-3">← Back to Gallery</a>
+    </div>
+
+    @if (Model.PhotoFiles.Any())
+    {
+        <!-- Main Carousel -->
+        <div id="photoCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                @for (int i = 0; i < Model.PhotoFiles.Count; i++)
+                {
+                    <button type="button" 
+                            data-bs-target="#photoCarousel" 
+                            data-bs-slide-to="@i" 
+                            class="@(i == 0 ? "active" : "")" 
+                            aria-current="@(i == 0 ? "true" : "false")" 
+                            aria-label="Slide @(i + 1)"></button>
+                }
+            </div>
+
+            <!-- Carousel Items -->
+            <div class="carousel-inner">
+                @for (int i = 0; i < Model.PhotoFiles.Count; i++)
+                {
+                    var photo = Model.PhotoFiles[i];
+                    var photoPath = $"~/Data/Photos/{Model.SetName}/{photo}";
+                    
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                        <img src="@Url.Content(photoPath)" 
+                             class="d-block w-100" 
+                             alt="@photo"
+                             style="height: 70vh; object-fit: contain; background-color: #000;">
+                        <div class="carousel-caption d-none d-md-block">
+                            <p class="bg-dark bg-opacity-75 d-inline-block px-3 py-2 rounded">@photo</p>
+                        </div>
+                        <!-- Download Button -->
+                        <div class="position-absolute top-0 end-0 p-3">
+                            <a href="@Url.Content(photoPath)" 
+                               download="@photo" 
+                               class="btn btn-primary btn-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                                </svg>
+                                Download
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <!-- Thumbnail Navigation -->
+        <div class="row g-2 justify-content-center">
+            @for (int i = 0; i < Model.PhotoFiles.Count; i++)
+            {
+                var photo = Model.PhotoFiles[i];
+                var photoPath = $"~/Data/Photos/{Model.SetName}/{photo}";
+                
+                <div class="col-auto">
+                    <img src="@Url.Content(photoPath)" 
+                         class="thumbnail-nav @(i == 0 ? "active" : "")" 
+                         alt="@photo"
+                         data-bs-target="#photoCarousel" 
+                         data-bs-slide-to="@i"
+                         style="width: 80px; height: 80px; object-fit: cover; cursor: pointer; border: 3px solid transparent; border-radius: 4px;">
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center">
+            No photos found in this set.
+        </div>
+    }
+</div>
+
+<style>
+    .thumbnail-nav {
+        transition: all 0.3s;
+        opacity: 0.6;
+    }
+    .thumbnail-nav:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    .thumbnail-nav.active {
+        opacity: 1;
+        border-color: #0d6efd !important;
+    }
+    .carousel-item img {
+        max-height: 70vh;
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        padding: 20px;
+    }
+</style>
+
+<script>
+    // Update active thumbnail when carousel slides
+    var carousel = document.getElementById('photoCarousel');
+    carousel.addEventListener('slide.bs.carousel', function (event) {
+        // Remove active class from all thumbnails
+        document.querySelectorAll('.thumbnail-nav').forEach(function(thumb) {
+            thumb.classList.remove('active');
+        });
+        // Add active class to current thumbnail
+        var thumbnails = document.querySelectorAll('.thumbnail-nav');
+        if (thumbnails[event.to]) {
+            thumbnails[event.to].classList.add('active');
+        }
+    });
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowLeft') {
+            bootstrap.Carousel.getInstance(carousel).prev();
+        } else if (event.key === 'ArrowRight') {
+            bootstrap.Carousel.getInstance(carousel).next();
+        }
+    });
+</script>

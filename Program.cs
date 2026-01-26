@@ -15,6 +15,14 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+// Serve static files from Data directory
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Data")),
+    RequestPath = "/Data"
+});
+
 app.UseRouting();
 
 app.UseAuthorization();
